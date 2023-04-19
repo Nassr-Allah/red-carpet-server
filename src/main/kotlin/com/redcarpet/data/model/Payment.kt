@@ -11,5 +11,6 @@ data class Payment(
     val method: String,
     val receipt: String,
     val date: String,
-    val clientId: String
+    val clientId: String,
+    val orderId: String
 )

@@ -9,6 +9,7 @@ data class CustomOrder(
     @BsonId
     val id: String = ObjectId().toString(),
     val order: Order,
+    val clientId: String,
     val budget: Int,
     val deliveryTime: String,
     val isSewingIncluded: Boolean,
