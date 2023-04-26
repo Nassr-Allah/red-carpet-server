@@ -1,6 +1,7 @@
 package com.redcarpet.data.repository.course_repository
 
 import com.redcarpet.data.model.Course
+import com.redcarpet.data.model.CourseCategory
 
 interface CourseRepository {
 

@@ -10,5 +10,6 @@ data class NormalOrder(
     val id: String = ObjectId().toString(),
     val order: Order,
     val clientId: String,
-    val designs: List<Design>
+    val designs: List<Design>,
+    val delivery: Delivery
 )

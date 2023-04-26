@@ -1,6 +1,7 @@
 package com.redcarpet.data.repository.course_repository
 
 import com.redcarpet.data.model.Course
+import com.redcarpet.data.model.CourseCategory
 import org.litote.kmongo.coroutine.CoroutineDatabase
 
 class CourseRepositoryImpl(private val database: CoroutineDatabase): CourseRepository {
@@ -26,4 +27,5 @@ class CourseRepositoryImpl(private val database: CoroutineDatabase): CourseRepos
     override suspend fun deleteCourseById(id: String) {
         courses.deleteOneById(id)
     }
+
 }

@@ -47,4 +47,6 @@ dependencies {
     implementation("io.insert-koin:koin-core:3.3.3")
     implementation("io.insert-koin:koin-ktor:3.3.1")
     implementation("io.insert-koin:koin-logger-slf4j:3.3.1")
+
+    implementation("commons-codec:commons-codec:1.15")
 }
