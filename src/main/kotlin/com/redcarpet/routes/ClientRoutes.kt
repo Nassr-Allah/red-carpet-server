@@ -1,14 +1,22 @@
 package com.redcarpet.routes
 
 import com.redcarpet.data.model.Client
+import com.redcarpet.data.model.ClientCollection
 import com.redcarpet.data.repository.client_repository.ClientRepository
+import com.redcarpet.data.repository.collection_repository.CollectionRepository
+import com.redcarpet.security.hashing.HashingService
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
-fun Route.clientRoute(clientRepository: ClientRepository) {
+fun Route.clientRoute(
+    clientRepository: ClientRepository,
+    hashingService: HashingService,
+    collectionRepository: CollectionRepository
+) {
+
     route("/clients") {
 
         get {
@@ -35,9 +43,17 @@ fun Route.clientRoute(clientRepository: ClientRepository) {
         }
 
         post {
-            val client = call.receive<Client>()
+            var client = call.receive<Client>()
+            val hashedPassword = hashingService.generateHash(client.password)
+            client = client.copy(password = hashedPassword)
             try {
                 clientRepository.insertClient(client)
+                val collection = ClientCollection(
+                    designs = emptyList(),
+                    patterns = emptyList(),
+                    clientId = client.id
+                )
+                collectionRepository.insertCollection(collection)
                 call.respondText("Client Added Successfully!", status = HttpStatusCode.Created)
             } catch (e: Exception) {
                 call.respondText(e.localizedMessage, status = HttpStatusCode.InternalServerError)

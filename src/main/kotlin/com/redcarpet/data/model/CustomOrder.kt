@@ -8,7 +8,9 @@ import org.bson.types.ObjectId
 data class CustomOrder(
     @BsonId
     val id: String = ObjectId().toString(),
-    val order: Order,
+    val status: String,
+    val totalPrice: Int,
+    val date: String,
     val clientId: String,
     val budget: Int,
     val deliveryTime: String,
@@ -16,5 +18,11 @@ data class CustomOrder(
     val isPatternIncluded: Boolean,
     val addition: String,
     val attachment: String,
-    val customDesign: CustomDesign
+    val gender: String,
+    val age: Int,
+    val type: String,
+    val material: String,
+    val size: String,
+    val colors: String,
+    val category: String,
 )

@@ -1,6 +1,8 @@
 package com.redcarpet.routes
 
+import com.redcarpet.data.model.CustomDesign
 import com.redcarpet.data.model.CustomOrder
+import com.redcarpet.data.model.Order
 import com.redcarpet.data.repository.custom_order_repository.CustomOrderRepository
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -36,6 +38,7 @@ fun Route.customOrderRoute(customOrderRepository: CustomOrderRepository) {
 
         post {
             val order = call.receive<CustomOrder>()
+            println("Order receive: $order")
             try {
                 customOrderRepository.insertCustomOrder(order)
                 call.respondText(

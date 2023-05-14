@@ -15,7 +15,7 @@ data class Design(
     val sizes: List<String>,
     val colors: List<Int>,
     val description: String,
-    val categoryId: String,
+    val category: String,
     val delivery: Delivery,
-    val patternId: String
+    val patternPrice: Int
 )

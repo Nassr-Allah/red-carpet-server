@@ -13,6 +13,7 @@ import com.redcarpet.routes.*
 import com.redcarpet.security.hashing.HashingService
 import com.redcarpet.security.token.TokenConfig
 import com.redcarpet.security.token.TokenService
+import io.ktor.client.*
 import io.ktor.server.routing.*
 import io.ktor.server.response.*
 import io.ktor.server.http.content.*
@@ -22,7 +23,8 @@ import org.koin.ktor.ext.inject
 fun Application.configureRouting(
     hashingService: HashingService,
     tokenService: TokenService,
-    tokenConfig: TokenConfig
+    tokenConfig: TokenConfig,
+    httpClient: HttpClient
 ) {
 
     val clientRepository by inject<ClientRepository>()
@@ -37,7 +39,8 @@ fun Application.configureRouting(
 
     routing {
         authRoute(clientRepository, hashingService, tokenService, tokenConfig)
-        clientRoute(clientRepository)
+        phoneVerificationRoutes(httpClient)
+        clientRoute(clientRepository, hashingService, collectionRepository)
         collectionRoute(collectionRepository)
         courseRoute(courseRepository)
         customOrderRoute(customOrderRepository)

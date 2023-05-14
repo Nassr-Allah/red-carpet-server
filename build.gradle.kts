@@ -34,6 +34,10 @@ dependencies {
     implementation("io.ktor:ktor-serialization-gson-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-netty-jvm:$ktor_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
+    implementation("io.ktor:ktor-client-content-negotiation:2.2.4")
+    implementation("io.ktor:ktor-serialization-jackson:2.2.4")
+    implementation("io.ktor:ktor-client-logging-jvm:2.2.4")
+    implementation("io.ktor:ktor-client-cio:$ktor_version")
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 
@@ -47,6 +51,12 @@ dependencies {
     implementation("io.insert-koin:koin-core:3.3.3")
     implementation("io.insert-koin:koin-ktor:3.3.1")
     implementation("io.insert-koin:koin-logger-slf4j:3.3.1")
+
+    //Telesign
+    implementation("com.telesign:telesign:2.3.0")
+
+    //Vonage
+    implementation("com.vonage:client:7.2.0")
 
     implementation("commons-codec:commons-codec:1.15")
 }

@@ -14,5 +14,5 @@ data class Course(
     val description: String,
     val type: String,
     val duration: String,
-    val categoryId: String
+    val category: String
 )

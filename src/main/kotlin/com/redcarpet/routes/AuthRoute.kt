@@ -2,6 +2,8 @@ package com.redcarpet.routes
 
 import com.redcarpet.data.model.AuthRequest
 import com.redcarpet.data.model.AuthResponse
+import com.redcarpet.data.model.PhoneVerificationRequest
+import com.redcarpet.data.model.PhoneVerificationResponse
 import com.redcarpet.data.repository.client_repository.ClientRepository
 import com.redcarpet.routes.authenticate
 import com.redcarpet.security.hashing.HashingService
@@ -15,12 +17,14 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
+
 fun Route.authRoute(
     clientRepository: ClientRepository,
     hashingService: HashingService,
     tokenService: TokenService,
     tokenConfig: TokenConfig
 ) {
+
     route("/auth") {
 
         post("/login") {
