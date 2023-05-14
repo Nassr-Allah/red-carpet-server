@@ -38,6 +38,9 @@ fun Application.configureRouting(
     val registrationRepository by inject<RegistrationRepository>()
 
     routing {
+        get("/") {
+            call.respondText("Hello World!")
+        }
         authRoute(clientRepository, hashingService, tokenService, tokenConfig)
         phoneVerificationRoutes(httpClient)
         clientRoute(clientRepository, hashingService, collectionRepository)
