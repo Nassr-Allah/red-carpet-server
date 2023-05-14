@@ -25,7 +25,7 @@ import org.litote.kmongo.reactivestreams.KMongo
 val appModule = module {
 
     single {
-        KMongo.createClient("mongodb+srv://redcarpet:0ZotgPZHOhooNjtn@maincluster.xeaea9k.mongodb.net/test")
+        KMongo.createClient("mongodb://mongo:Obe3u4CJR0xiFrg4h3aL@containers-us-west-56.railway.app:5858")
             .coroutine
             .getDatabase("redcarpet_db")
     }
