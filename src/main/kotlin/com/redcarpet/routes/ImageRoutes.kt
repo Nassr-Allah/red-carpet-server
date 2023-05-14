@@ -30,7 +30,7 @@ fun Route.imageRoutes() {
                         if (part is PartData.FileItem) {
                             name = part.originalFileName ?: "${System.currentTimeMillis()}.jpg"
                             part.save(path, name)
-                            imgUrl = "http://localhost:8080/images/course/$name"
+                            imgUrl = "https://red-carpet-server-production.up.railway.app/images/course/$name"
                         }
                     }
                     call.respondText(
@@ -58,7 +58,7 @@ fun Route.imageRoutes() {
                         if (part is PartData.FileItem) {
                             name = part.originalFileName ?: "${System.currentTimeMillis()}.jpg"
                             part.save(path, name)
-                            imgUrl = "http://localhost:8080/images/design/$name"
+                            imgUrl = "https://red-carpet-server-production.up.railway.app/images/design/$name"
                         }
                     }
                     call.respondText(
@@ -85,7 +85,7 @@ fun Route.imageRoutes() {
                         if (part is PartData.FileItem) {
                             name = part.originalFileName ?: "${System.currentTimeMillis()}.jpg"
                             part.save(path, name)
-                            imgUrl = "http://localhost:8080/images/pattern/$name"
+                            imgUrl = "https://red-carpet-server-production.up.railway.app/images/pattern/$name"
                         }
                     }
                     call.respondText(
@@ -112,7 +112,7 @@ fun Route.imageRoutes() {
                         if (part is PartData.FileItem) {
                             name = part.originalFileName ?: "${System.currentTimeMillis()}.jpg"
                             part.save(path, name)
-                            imgUrl = "http://localhost:8080/images/attachment/$name"
+                            imgUrl = "https://red-carpet-server-production.up.railway.app/images/attachment/$name"
                         }
                     }
                     call.respondText(
