@@ -23,14 +23,14 @@ fun Route.imageRoutes() {
             post {
                 val multipart = call.receiveMultipart()
                 try {
-                    val path = "uploads/course/"
+                    val path = "uploads/"
                     var imgUrl = ""
                     var name = ""
                     multipart.forEachPart { part ->
                         if (part is PartData.FileItem) {
                             name = part.originalFileName ?: "${System.currentTimeMillis()}.jpg"
                             part.save(path, name)
-                            imgUrl = "https://${System.getenv("RAILWAY_URL")}/uploads/course/$name"
+                            imgUrl = "https://${System.getenv("RAILWAY_URL")}/uploads/$name"
                         }
                     }
                     call.respondText(
