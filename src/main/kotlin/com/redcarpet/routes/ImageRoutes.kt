@@ -23,7 +23,7 @@ fun Route.imageRoutes() {
             post {
                 val multipart = call.receiveMultipart()
                 try {
-                    val path = "src/main/resources/static/images/course/"
+                    val path = "build/resources/main/static/images/course/"
                     var imgUrl = ""
                     var name = ""
                     multipart.forEachPart { part ->
