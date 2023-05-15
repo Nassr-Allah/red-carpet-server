@@ -30,7 +30,7 @@ fun Route.imageRoutes() {
                         if (part is PartData.FileItem) {
                             name = part.originalFileName ?: "${System.currentTimeMillis()}.jpg"
                             part.save(path, name)
-                            imgUrl = "https://red-carpet-server-production.up.railway.app/images/course/$name"
+                            imgUrl = "https://${System.getenv("RAILWAY_URL")}/images/course/$name"
                         }
                     }
                     call.respondText(
