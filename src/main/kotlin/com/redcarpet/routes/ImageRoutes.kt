@@ -51,14 +51,14 @@ fun Route.imageRoutes() {
             post {
                 val multipart = call.receiveMultipart()
                 try {
-                    val path = "src/main/resources/static/images/design/"
+                    val path = "uploads/"
                     var imgUrl = ""
                     var name = ""
                     multipart.forEachPart { part ->
                         if (part is PartData.FileItem) {
                             name = part.originalFileName ?: "${System.currentTimeMillis()}.jpg"
                             part.save(path, name)
-                            imgUrl = "https://red-carpet-server-production.up.railway.app/images/design/$name"
+                            imgUrl = "https://${System.getenv("RAILWAY_URL")}/uploads/$name"
                         }
                     }
                     call.respondText(
@@ -78,14 +78,14 @@ fun Route.imageRoutes() {
             post {
                 val multipart = call.receiveMultipart()
                 try {
-                    val path = "src/main/resources/static/images/pattern/"
+                    val path = "uploads/"
                     var imgUrl = ""
                     var name = ""
                     multipart.forEachPart { part ->
                         if (part is PartData.FileItem) {
                             name = part.originalFileName ?: "${System.currentTimeMillis()}.jpg"
                             part.save(path, name)
-                            imgUrl = "https://red-carpet-server-production.up.railway.app/images/pattern/$name"
+                            imgUrl = "https://${System.getenv("RAILWAY_URL")}/uploads/$name"
                         }
                     }
                     call.respondText(
@@ -105,14 +105,14 @@ fun Route.imageRoutes() {
             post {
                 val multipart = call.receiveMultipart()
                 try {
-                    val path = "src/main/resources/static/images/attachment/"
+                    val path = "uploads/"
                     var imgUrl = ""
                     var name = ""
                     multipart.forEachPart { part ->
                         if (part is PartData.FileItem) {
                             name = part.originalFileName ?: "${System.currentTimeMillis()}.jpg"
                             part.save(path, name)
-                            imgUrl = "https://red-carpet-server-production.up.railway.app/images/attachment/$name"
+                            imgUrl = "https://${System.getenv("RAILWAY_URL")}/uploads/$name"
                         }
                     }
                     call.respondText(
