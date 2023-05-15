@@ -54,8 +54,9 @@ fun Application.configureRouting(
         registrationRoute(registrationRepository)
         imageRoutes()
 
-        static {
+        static("images") {
             resources("static")
+            files("images")
         }
     }
 }
