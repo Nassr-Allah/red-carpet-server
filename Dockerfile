@@ -8,5 +8,5 @@ EXPOSE 8080:8080
 RUN mkdir /app
 WORKDIR /app
 COPY --from=build /home/gradle/src/build/libs/*.jar /app/ktor-docker-sample.jar
-VOLUME uploads /app/uploads
+COPY uploads /app/uploads
 ENTRYPOINT ["java","-jar","/app/ktor-docker-sample.jar"]
