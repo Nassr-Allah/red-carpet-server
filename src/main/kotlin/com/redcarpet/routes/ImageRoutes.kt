@@ -1,8 +1,10 @@
 package com.redcarpet.routes
 
+import com.redcarpet.routes.authenticate
 import io.ktor.http.*
 import io.ktor.http.content.*
 import io.ktor.server.application.*
+import io.ktor.server.auth.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -18,112 +20,115 @@ fun PartData.FileItem.save(path: String, fileName: String): String {
 
 fun Route.imageRoutes() {
     route("/image") {
-        route("/course") {
 
-            post {
-                val multipart = call.receiveMultipart()
-                try {
-                    val path = "uploads/"
-                    var imgUrl = ""
-                    var name = ""
-                    multipart.forEachPart { part ->
-                        if (part is PartData.FileItem) {
-                            name = part.originalFileName ?: "${System.currentTimeMillis()}.jpg"
-                            part.save(path, name)
-                            imgUrl = "https://${System.getenv("RAILWAY_URL")}/uploads/$name"
+        authenticate {
+            route("/course") {
+
+                post {
+                    val multipart = call.receiveMultipart()
+                    try {
+                        val path = "uploads/"
+                        var imgUrl = ""
+                        var name = ""
+                        multipart.forEachPart { part ->
+                            if (part is PartData.FileItem) {
+                                name = part.originalFileName ?: "${System.currentTimeMillis()}.jpg"
+                                part.save(path, name)
+                                imgUrl = "https://${System.getenv("RAILWAY_URL")}/uploads/$name"
+                            }
                         }
+                        call.respondText(
+                            text = imgUrl,
+                            status = HttpStatusCode.Created
+                        )
+                    } catch (e: Exception) {
+                        call.respondText(
+                            text = e.localizedMessage,
+                            status = HttpStatusCode.InternalServerError
+                        )
                     }
-                    call.respondText(
-                        text = imgUrl,
-                        status = HttpStatusCode.Created
-                    )
-                } catch (e: Exception) {
-                    call.respondText(
-                        text = e.localizedMessage,
-                        status = HttpStatusCode.InternalServerError
-                    )
+                }
+
+            }
+
+            route("/design") {
+                post {
+                    val multipart = call.receiveMultipart()
+                    try {
+                        val path = "uploads/"
+                        var imgUrl = ""
+                        var name = ""
+                        multipart.forEachPart { part ->
+                            if (part is PartData.FileItem) {
+                                name = part.originalFileName ?: "${System.currentTimeMillis()}.jpg"
+                                part.save(path, name)
+                                imgUrl = "https://${System.getenv("RAILWAY_URL")}/uploads/$name"
+                            }
+                        }
+                        call.respondText(
+                            text = imgUrl,
+                            status = HttpStatusCode.Created
+                        )
+                    } catch (e: Exception) {
+                        call.respondText(
+                            text = e.localizedMessage,
+                            status = HttpStatusCode.InternalServerError
+                        )
+                    }
                 }
             }
 
-        }
-
-        route("/design") {
-            post {
-                val multipart = call.receiveMultipart()
-                try {
-                    val path = "uploads/"
-                    var imgUrl = ""
-                    var name = ""
-                    multipart.forEachPart { part ->
-                        if (part is PartData.FileItem) {
-                            name = part.originalFileName ?: "${System.currentTimeMillis()}.jpg"
-                            part.save(path, name)
-                            imgUrl = "https://${System.getenv("RAILWAY_URL")}/uploads/$name"
+            route("/pattern") {
+                post {
+                    val multipart = call.receiveMultipart()
+                    try {
+                        val path = "uploads/"
+                        var imgUrl = ""
+                        var name = ""
+                        multipart.forEachPart { part ->
+                            if (part is PartData.FileItem) {
+                                name = part.originalFileName ?: "${System.currentTimeMillis()}.jpg"
+                                part.save(path, name)
+                                imgUrl = "https://${System.getenv("RAILWAY_URL")}/uploads/$name"
+                            }
                         }
+                        call.respondText(
+                            text = imgUrl,
+                            status = HttpStatusCode.Created
+                        )
+                    } catch (e: Exception) {
+                        call.respondText(
+                            text = e.localizedMessage,
+                            status = HttpStatusCode.InternalServerError
+                        )
                     }
-                    call.respondText(
-                        text = imgUrl,
-                        status = HttpStatusCode.Created
-                    )
-                } catch (e: Exception) {
-                    call.respondText(
-                        text = e.localizedMessage,
-                        status = HttpStatusCode.InternalServerError
-                    )
                 }
             }
-        }
 
-        route("/pattern") {
-            post {
-                val multipart = call.receiveMultipart()
-                try {
-                    val path = "uploads/"
-                    var imgUrl = ""
-                    var name = ""
-                    multipart.forEachPart { part ->
-                        if (part is PartData.FileItem) {
-                            name = part.originalFileName ?: "${System.currentTimeMillis()}.jpg"
-                            part.save(path, name)
-                            imgUrl = "https://${System.getenv("RAILWAY_URL")}/uploads/$name"
+            route("/attachment") {
+                post {
+                    val multipart = call.receiveMultipart()
+                    try {
+                        val path = "uploads/"
+                        var imgUrl = ""
+                        var name = ""
+                        multipart.forEachPart { part ->
+                            if (part is PartData.FileItem) {
+                                name = part.originalFileName ?: "${System.currentTimeMillis()}.jpg"
+                                part.save(path, name)
+                                imgUrl = "https://${System.getenv("RAILWAY_URL")}/uploads/$name"
+                            }
                         }
+                        call.respondText(
+                            text = imgUrl,
+                            status = HttpStatusCode.Created
+                        )
+                    } catch (e: Exception) {
+                        call.respondText(
+                            text = e.localizedMessage,
+                            status = HttpStatusCode.InternalServerError
+                        )
                     }
-                    call.respondText(
-                        text = imgUrl,
-                        status = HttpStatusCode.Created
-                    )
-                } catch (e: Exception) {
-                    call.respondText(
-                        text = e.localizedMessage,
-                        status = HttpStatusCode.InternalServerError
-                    )
-                }
-            }
-        }
-
-        route("/attachment") {
-            post {
-                val multipart = call.receiveMultipart()
-                try {
-                    val path = "uploads/"
-                    var imgUrl = ""
-                    var name = ""
-                    multipart.forEachPart { part ->
-                        if (part is PartData.FileItem) {
-                            name = part.originalFileName ?: "${System.currentTimeMillis()}.jpg"
-                            part.save(path, name)
-                            imgUrl = "https://${System.getenv("RAILWAY_URL")}/uploads/$name"
-                        }
-                    }
-                    call.respondText(
-                        text = imgUrl,
-                        status = HttpStatusCode.Created
-                    )
-                } catch (e: Exception) {
-                    call.respondText(
-                        text = e.localizedMessage,
-                        status = HttpStatusCode.InternalServerError
-                    )
                 }
             }
         }

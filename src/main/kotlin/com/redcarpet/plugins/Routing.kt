@@ -42,7 +42,6 @@ fun Application.configureRouting(
             call.respondText("Hello World!")
         }
         authRoute(clientRepository, hashingService, tokenService, tokenConfig)
-        phoneVerificationRoutes(httpClient)
         clientRoute(clientRepository, hashingService, collectionRepository)
         collectionRoute(collectionRepository)
         courseRoute(courseRepository)
