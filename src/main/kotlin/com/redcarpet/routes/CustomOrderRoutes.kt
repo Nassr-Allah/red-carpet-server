@@ -17,8 +17,15 @@ fun Route.customOrderRoute(customOrderRepository: CustomOrderRepository) {
 
         authenticate {
             get {
-                val orders = customOrderRepository.getAllCustomOrders()
-                call.respond(orders)
+                try {
+                    val orders = customOrderRepository.getAllCustomOrders()
+                    call.respond(orders)
+                } catch (e: Exception) {
+                    call.respondText(
+                        text = e.localizedMessage,
+                        status = HttpStatusCode.InternalServerError
+                    )
+                }
             }
 
             get("/client/{id}") {
