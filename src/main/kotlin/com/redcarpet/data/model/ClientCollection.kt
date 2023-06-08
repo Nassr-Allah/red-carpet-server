@@ -8,7 +8,7 @@ import org.bson.types.ObjectId
 data class ClientCollection(
     @BsonId
     val id: String = ObjectId().toString(),
-    val designs: List<Design>,
-    val patterns: List<OriginalPattern>,
+    val designs: List<String>,
+    val patterns: List<String>,
     val clientId: String
 )
