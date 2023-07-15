@@ -10,6 +10,8 @@ import com.redcarpet.data.repository.custom_order_repository.CustomOrderReposito
 import com.redcarpet.data.repository.custom_order_repository.CustomOrderRepositoryImpl
 import com.redcarpet.data.repository.design_repository.DesignRepository
 import com.redcarpet.data.repository.design_repository.DesignRepositoryImpl
+import com.redcarpet.data.repository.manager_repository.ManagerRepository
+import com.redcarpet.data.repository.manager_repository.ManagerRepositoryImpl
 import com.redcarpet.data.repository.order_repository.OrderRepository
 import com.redcarpet.data.repository.order_repository.OrderRepositoryImpl
 import com.redcarpet.data.repository.pattern_repository.PatternRepository
@@ -24,21 +26,12 @@ import org.litote.kmongo.reactivestreams.KMongo
 
 val appModule = module {
 
-
-    single {
-        KMongo.createClient("mongodb://mongo:Obe3u4CJR0xiFrg4h3aL@containers-us-west-56.railway.app:5858")
-            .coroutine
-            .getDatabase("redcarpet_db")
-    }
-
-    /*
     single {
         KMongo.createClient("mongodb+srv://redcarpet:0ZotgPZHOhooNjtn@maincluster.xeaea9k.mongodb.net/test")
             .coroutine
             .getDatabase("redcarpet_db")
     }
 
-     */
 
     single<ClientRepository> {
         ClientRepositoryImpl(get())
@@ -74,6 +67,10 @@ val appModule = module {
 
     single<RegistrationRepository> {
         RegistrationRepositoryImpl(get())
+    }
+
+    single<ManagerRepository> {
+        ManagerRepositoryImpl(get())
     }
 
 }

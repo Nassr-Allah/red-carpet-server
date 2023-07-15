@@ -5,6 +5,7 @@ import com.redcarpet.data.repository.collection_repository.CollectionRepository
 import com.redcarpet.data.repository.course_repository.CourseRepository
 import com.redcarpet.data.repository.custom_order_repository.CustomOrderRepository
 import com.redcarpet.data.repository.design_repository.DesignRepository
+import com.redcarpet.data.repository.manager_repository.ManagerRepository
 import com.redcarpet.data.repository.order_repository.OrderRepository
 import com.redcarpet.data.repository.pattern_repository.PatternRepository
 import com.redcarpet.data.repository.payment_repository.PaymentRepository
@@ -36,12 +37,13 @@ fun Application.configureRouting(
     val patternRepository by inject<PatternRepository>()
     val paymentRepository by inject<PaymentRepository>()
     val registrationRepository by inject<RegistrationRepository>()
+    val managerRepository by inject<ManagerRepository>()
 
     routing {
         get("/") {
             call.respondText("Hello World!")
         }
-        authRoute(clientRepository, hashingService, tokenService, tokenConfig)
+        authRoute(clientRepository, managerRepository, hashingService, tokenService, tokenConfig)
         clientRoute(clientRepository, hashingService, collectionRepository)
         collectionRoute(collectionRepository)
         courseRoute(courseRepository)
