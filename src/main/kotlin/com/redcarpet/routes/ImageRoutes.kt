@@ -34,7 +34,7 @@ fun Route.imageRoutes() {
                             if (part is PartData.FileItem) {
                                 name = part.originalFileName ?: "${System.currentTimeMillis()}.jpg"
                                 part.save(path, name)
-                                imgUrl = "http://89.116.236.180/uploads/$name"
+                                imgUrl = "http://147.93.52.105:8085/uploads/$name"
                             }
                         }
                         call.respondText(
@@ -62,7 +62,7 @@ fun Route.imageRoutes() {
                             if (part is PartData.FileItem) {
                                 name = part.originalFileName ?: "${System.currentTimeMillis()}.jpg"
                                 part.save(path, name)
-                                imgUrl = "http://89.116.236.180/uploads/$name"
+                                imgUrl = "http://147.93.52.105:8085/uploads/$name"
                             }
                         }
                         call.respondText(
@@ -89,7 +89,7 @@ fun Route.imageRoutes() {
                             if (part is PartData.FileItem) {
                                 name = part.originalFileName ?: "${System.currentTimeMillis()}.jpg"
                                 part.save(path, name)
-                                imgUrl = "http://89.116.236.180/uploads/$name"
+                                imgUrl = "http://147.93.52.105:8085/uploads/$name"
                             }
                         }
                         call.respondText(
@@ -116,7 +116,7 @@ fun Route.imageRoutes() {
                             if (part is PartData.FileItem) {
                                 name = part.originalFileName ?: "${System.currentTimeMillis()}.jpg"
                                 part.save(path, name)
-                                imgUrl = "http://89.116.236.180/uploads/$name"
+                                imgUrl = "http://147.93.52.105:8085/uploads/$name"
                             }
                         }
                         call.respondText(

@@ -7,9 +7,7 @@ import com.redcarpet.security.token.JwtTokenService
 import com.redcarpet.security.token.TokenConfig
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
-import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
-import io.ktor.serialization.jackson.*
 import io.ktor.server.application.*
 import org.koin.ktor.plugin.Koin
 
@@ -21,8 +19,8 @@ fun Application.module() {
 
     val tokenService = JwtTokenService()
     val tokenConfig = TokenConfig(
-        issuer = environment.config.property("jwt.issuer").getString(),
-        audience = environment.config.property("jwt.audience").getString(),
+        issuer = System.getenv("JWT_ISSUER") ?: throw IllegalArgumentException("issuer cannot be null"),
+        audience = System.getenv("JWT_AUDIENCE") ?: throw IllegalArgumentException("audience cannot be null"),
         expiry = 7889400000L,
         secret = System.getenv("JWT_SECRET") ?: ""
     )
