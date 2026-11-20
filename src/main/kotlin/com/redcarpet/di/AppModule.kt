@@ -27,9 +27,11 @@ import org.litote.kmongo.reactivestreams.KMongo
 val appModule = module {
 
     single {
-        KMongo.createClient("mongodb+srv://redcarpet:0ZotgPZHOhooNjtn@maincluster.xeaea9k.mongodb.net/test")
+        val connectionString = System.getenv("CONNECTION_STRING") ?: throw IllegalArgumentException("No connection string")
+        val database = System.getenv("DATABASE") ?: throw IllegalArgumentException("Database is not set")
+        KMongo.createClient(connectionString)
             .coroutine
-            .getDatabase("redcarpet_db")
+            .getDatabase(database)
     }
 
 
